@@ -55,17 +55,8 @@ export function AIAssistButton({ onClick, isActive }: AIAssistButtonProps) {
       {/* Tooltip */}
       {showTooltip && (
         <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-50 animate-in fade-in-0 zoom-in-95 duration-200">
-          <div className="bg-gray-900 border border-gray-800 rounded-lg shadow-xl p-4 max-w-xs">
-            <div className="space-y-2">
-              <p className="font-semibold text-purple-400 text-sm">✨ AI-Powered Features</p>
-              <ul className="text-xs space-y-1 text-gray-300">
-                <li>• Summarize your notes instantly</li>
-                <li>• Extract action items automatically</li>
-                <li>• Improve writing quality</li>
-                <li>• Generate smart titles</li>
-                <li>• Suggest relevant tags</li>
-              </ul>
-            </div>
+          <div className="bg-gray-900 border border-gray-800 rounded-lg shadow-xl px-3 py-2">
+            <p className="font-semibold text-purple-400 text-sm whitespace-nowrap">✨ AI Assistant</p>
           </div>
         </div>
       )}
