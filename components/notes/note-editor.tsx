@@ -7,17 +7,12 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useAutosave } from "@/hooks/use-autosave"
 import { 
-  Sparkles, 
-  ListChecks, 
-  Wand2, 
   Save, 
-  Share2,
-  Archive,
-  Pin,
   X
 } from "lucide-react"
 import toast from "react-hot-toast"
 import { AIAssistant } from "./ai-assistant"
+import { AIAssistButton } from "./ai-assist-button"
 
 interface NoteEditorProps {
   noteId?: string
@@ -129,25 +124,25 @@ export function NoteEditor({
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between p-4 border-b border-gray-800">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between p-4 border-b border-gray-800 bg-gray-950/50">
+        <div className="flex items-center gap-4">
           <Button
             variant="ghost"
             size="icon"
             onClick={handleManualSave}
             disabled={isSaving}
             title="Save note"
+            className="text-gray-400 hover:text-white"
           >
             <Save className="w-4 h-4" />
           </Button>
-          <Button
-            variant="ghost"
-            size="icon"
+          
+          {/* Premium AI Assist Button */}
+          <AIAssistButton 
             onClick={() => setShowAI(!showAI)}
-            title="AI Assistant"
-          >
-            <Sparkles className="w-4 h-4" />
-          </Button>
+            isActive={showAI}
+          />
+          
           {lastSaved && (
             <span className="text-xs text-gray-500">
               Saved {lastSaved.toLocaleTimeString()}
@@ -155,7 +150,13 @@ export function NoteEditor({
           )}
         </div>
         {onClose && (
-          <Button variant="ghost" size="icon" onClick={handleClose} title="Close">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={handleClose} 
+            title="Close"
+            className="text-gray-400 hover:text-white"
+          >
             <X className="w-4 h-4" />
           </Button>
         )}

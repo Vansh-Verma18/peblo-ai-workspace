@@ -9,13 +9,12 @@ A production-quality full-stack AI collaborative notes workspace application bui
 
 ## 🌐 Live Demo
 
-**[View Live Application](https://peblo-ai-workspace-0-dok0nl1jp-vanshverma531-gmailcoms-projects.vercel.app)**
+**[View Live Application](https://peblo-ai-workspace-0.vercel.app)**
 
 Try it out without any setup! Create an account and explore all features.
 
 **Test Credentials:**
-- Email: test@example.com
-- Password: password123
+- Create your own account to test all features
 
 ## 🎥 Demo Video
 

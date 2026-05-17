@@ -72,3 +72,4 @@ VERIFICATION_CHECKLIST.md
 ✅_*.md
 
 .vercel
+.env*.local
