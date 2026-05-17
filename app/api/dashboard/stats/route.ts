@@ -32,7 +32,7 @@ export async function GET() {
     // AI usage count
     const aiUsageCount = await prisma.aIUsage.count({
       where: { userId },
-    })
+    }).catch(() => 0) // Gracefully handle if table doesn't exist yet
 
     // Top tags
     const tagCounts = await prisma.noteTag.groupBy({
