@@ -20,7 +20,7 @@ export function AIAssistButton({ onClick, isActive }: AIAssistButtonProps) {
         onMouseLeave={() => setShowTooltip(false)}
         className={`
           relative group
-          px-6 py-2.5 h-auto
+          w-12 h-12
           bg-gradient-to-r from-purple-600 via-violet-600 to-blue-600
           hover:from-purple-500 hover:via-violet-500 hover:to-blue-500
           text-white font-semibold
@@ -29,6 +29,7 @@ export function AIAssistButton({ onClick, isActive }: AIAssistButtonProps) {
           hover:shadow-xl hover:shadow-purple-500/60
           transition-all duration-300
           border-0
+          p-0
           ${isActive ? 'ring-2 ring-purple-400 ring-offset-2 ring-offset-gray-950' : ''}
         `}
       >
@@ -37,13 +38,12 @@ export function AIAssistButton({ onClick, isActive }: AIAssistButtonProps) {
         
         {/* Sparkle animation */}
         <div className="absolute -top-1 -right-1">
-          <Sparkles className="w-4 h-4 text-yellow-300 animate-pulse" />
+          <Sparkles className="w-3 h-3 text-yellow-300 animate-pulse" />
         </div>
         
-        {/* Button content */}
-        <div className="relative flex items-center gap-2">
-          <Sparkles className="w-5 h-5 animate-pulse" />
-          <span className="text-sm font-bold tracking-wide">AI Assist</span>
+        {/* Button content - Icon only */}
+        <div className="relative flex items-center justify-center">
+          <Sparkles className="w-6 h-6 animate-pulse" />
         </div>
 
         {/* Shimmer effect */}

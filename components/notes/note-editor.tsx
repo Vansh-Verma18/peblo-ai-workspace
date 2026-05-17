@@ -149,17 +149,6 @@ export function NoteEditor({
             </span>
           )}
         </div>
-        {onClose && (
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={handleClose} 
-            title="Close"
-            className="text-gray-400 hover:text-white"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        )}
       </div>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-4">
