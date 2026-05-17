@@ -162,7 +162,7 @@ export function NoteEditor({
         )}
       </div>
 
-      <div className="flex-1 overflow-y-auto p-6 space-y-4">
+      <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
         <Input
           placeholder="Note title..."
           value={title}
@@ -170,10 +170,10 @@ export function NoteEditor({
             setTitle(e.target.value)
             setHasChanges(true)
           }}
-          className="text-2xl font-bold border-none bg-transparent focus:ring-0 px-0"
+          className="text-2xl font-bold border-none bg-transparent focus:ring-0 px-0 shrink-0"
         />
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 shrink-0">
           {tags.map((tag) => (
             <Badge key={tag} variant="secondary" className="gap-1">
               {tag}
@@ -197,14 +197,16 @@ export function NoteEditor({
           />
         </div>
 
-        <RichTextEditor
-          content={content}
-          onChange={(newContent) => {
-            setContent(newContent)
-            setHasChanges(true)
-          }}
-          placeholder="Start writing your note..."
-        />
+        <div className="flex-1 min-h-0">
+          <RichTextEditor
+            content={content}
+            onChange={(newContent) => {
+              setContent(newContent)
+              setHasChanges(true)
+            }}
+            placeholder="Start writing your note..."
+          />
+        </div>
       </div>
 
       {showAI && (

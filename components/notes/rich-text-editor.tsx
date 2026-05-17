@@ -65,9 +65,9 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
   }
 
   return (
-    <div className="border border-white/10 rounded-lg bg-black/20 backdrop-blur-sm overflow-hidden">
+    <div className="border border-white/10 rounded-lg bg-black/20 backdrop-blur-sm overflow-hidden flex flex-col h-full">
       {/* Toolbar */}
-      <div className="flex items-center gap-1 p-2 border-b border-white/10 bg-white/5 flex-wrap">
+      <div className="flex items-center gap-1 p-2 border-b border-white/10 bg-white/5 flex-wrap shrink-0">
         <Button
           type="button"
           variant="ghost"
@@ -175,8 +175,10 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
         </Button>
       </div>
 
-      {/* Editor */}
-      <EditorContent editor={editor} />
+      {/* Editor - Scrollable */}
+      <div className="flex-1 overflow-y-auto">
+        <EditorContent editor={editor} />
+      </div>
     </div>
   )
 }
