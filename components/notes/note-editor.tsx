@@ -56,6 +56,8 @@ export function NoteEditor({
       const url = noteId ? `/api/notes/${noteId}` : "/api/notes"
       const method = noteId ? "PATCH" : "POST"
 
+      console.log("Saving note:", { url, method, title, content: content.substring(0, 50) })
+
       const response = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
@@ -66,14 +68,20 @@ export function NoteEditor({
         }),
       })
 
-      if (!response.ok) throw new Error("Failed to save note")
+      const data = await response.json()
+      console.log("Save response:", { status: response.status, data })
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to save note")
+      }
 
       setLastSaved(new Date())
       setHasChanges(false)
       toast.success("Note saved", { duration: 2000 })
       // Don't call onSave here - it causes the dialog to close
     } catch (error) {
-      toast.error("Failed to save note")
+      console.error("Save error:", error)
+      toast.error(error instanceof Error ? error.message : "Failed to save note")
     } finally {
       setIsSaving(false)
     }

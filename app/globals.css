@@ -150,6 +150,9 @@
   outline: none;
   min-height: 100%;
   height: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .ProseMirror p.is-editor-empty:first-child::before {

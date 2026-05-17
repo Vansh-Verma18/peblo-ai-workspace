@@ -45,7 +45,7 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
     content,
     editorProps: {
       attributes: {
-        class: "prose prose-invert max-w-none focus:outline-none px-4 py-3 h-full",
+        class: "prose prose-invert max-w-none focus:outline-none px-4 py-3 h-full overflow-y-auto break-words",
       },
     },
     onUpdate: ({ editor }) => {
@@ -176,8 +176,8 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
       </div>
 
       {/* Editor - Scrollable */}
-      <div className="flex-1 overflow-y-auto overflow-x-hidden min-h-[300px] max-h-full">
-        <EditorContent editor={editor} className="h-full" />
+      <div className="flex-1 overflow-hidden">
+        <EditorContent editor={editor} className="h-full overflow-y-auto" />
       </div>
     </div>
   )
