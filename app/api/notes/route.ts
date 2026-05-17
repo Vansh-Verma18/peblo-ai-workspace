@@ -23,8 +23,8 @@ export async function GET(request: Request) {
         isArchived: archived,
         ...(search && {
           OR: [
-            { title: { contains: search, mode: "insensitive" } },
-            { content: { contains: search, mode: "insensitive" } },
+            { title: { contains: search } },
+            { content: { contains: search } },
           ],
         }),
         ...(categoryId && { categoryId }),
