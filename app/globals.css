@@ -148,6 +148,8 @@
 /* TipTap Editor Styles */
 .ProseMirror {
   outline: none;
+  min-height: 100%;
+  height: auto;
 }
 
 .ProseMirror p.is-editor-empty:first-child::before {

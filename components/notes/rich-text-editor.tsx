@@ -176,8 +176,8 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
       </div>
 
       {/* Editor - Scrollable */}
-      <div className="flex-1 overflow-y-auto min-h-[300px]">
-        <EditorContent editor={editor} />
+      <div className="flex-1 overflow-y-auto overflow-x-hidden min-h-[300px] max-h-full">
+        <EditorContent editor={editor} className="h-full" />
       </div>
     </div>
   )
