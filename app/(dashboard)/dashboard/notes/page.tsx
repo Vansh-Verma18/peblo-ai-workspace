@@ -7,7 +7,9 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { NoteEditor } from "@/components/notes/note-editor"
-import { Search, Filter, Plus } from "lucide-react"
+import { Search, Filter, Plus, FileText } from "lucide-react"
+import { TemplateSelector } from "@/components/notes/template-selector"
+import { NoteTemplate } from "@/lib/note-templates"
 import { Note } from "@/types"
 import { motion, AnimatePresence } from "framer-motion"
 import toast from "react-hot-toast"
@@ -19,6 +21,8 @@ export default function NotesPage() {
   const [selectedNote, setSelectedNote] = useState<Note | null>(null)
   const [showEditor, setShowEditor] = useState(false)
   const [isCreating, setIsCreating] = useState(false)
+  const [showTemplates, setShowTemplates] = useState(false)
+  const [templateData, setTemplateData] = useState<{ title: string; content: string; tags: string[] } | null>(null)
 
   // Debounce search to reduce API calls
   const debouncedSearch = useDebouncedValue(searchQuery, 300)
@@ -42,6 +46,18 @@ export default function NotesPage() {
 
   const handleCreateNote = useCallback(() => {
     setSelectedNote(null)
+    setTemplateData(null)
+    setShowEditor(true)
+    setIsCreating(true)
+  }, [])
+
+  const handleSelectTemplate = useCallback((template: NoteTemplate) => {
+    setSelectedNote(null)
+    setTemplateData({
+      title: template.title,
+      content: template.content,
+      tags: template.tags,
+    })
     setShowEditor(true)
     setIsCreating(true)
   }, [])
@@ -144,10 +160,16 @@ export default function NotesPage() {
             {notes.length} {notes.length === 1 ? "note" : "notes"}
           </p>
         </div>
-        <Button onClick={handleCreateNote} size="lg">
-          <Plus className="w-4 h-4 mr-2" />
-          New Note
-        </Button>
+        <div className="flex gap-2">
+          <Button onClick={handleCreateNote} size="lg">
+            <Plus className="w-4 h-4 mr-2" />
+            New Note
+          </Button>
+          <Button onClick={() => setShowTemplates(true)} size="lg" variant="outline">
+            <FileText className="w-4 h-4 mr-2" />
+            From Template
+          </Button>
+        </div>
       </div>
 
       <div className="flex gap-4">
@@ -216,14 +238,20 @@ export default function NotesPage() {
         >
           <NoteEditor
             noteId={isCreating ? undefined : selectedNote?.id}
-            initialTitle={isCreating ? "" : selectedNote?.title}
-            initialContent={isCreating ? "" : selectedNote?.content}
-            initialTags={isCreating ? [] : selectedNote?.tags?.map((t) => t.tag.name) || []}
+            initialTitle={isCreating ? (templateData?.title || "") : selectedNote?.title}
+            initialContent={isCreating ? (templateData?.content || "") : selectedNote?.content}
+            initialTags={isCreating ? (templateData?.tags || []) : selectedNote?.tags?.map((t) => t.tag.name) || []}
             onSave={handleSaveNewNote}
             onClose={handleCloseEditor}
           />
         </DialogContent>
       </Dialog>
+
+      <TemplateSelector
+        open={showTemplates}
+        onClose={() => setShowTemplates(false)}
+        onSelectTemplate={handleSelectTemplate}
+      />
     </div>
   )
 }
