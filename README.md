@@ -7,6 +7,16 @@ A production-quality full-stack AI collaborative notes workspace application bui
 ![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748)
 ![OpenRouter](https://img.shields.io/badge/OpenRouter-AI-412991)
 
+## 🌐 Live Demo
+
+**[View Live Application](https://peblo-ai-workspace-0-dok0nl1jp-vanshverma531-gmailcoms-projects.vercel.app)**
+
+Try it out without any setup! Create an account and explore all features.
+
+**Test Credentials:**
+- Email: test@example.com
+- Password: password123
+
 ## 🎥 Demo Video
 
 > **[Add your demo video link here after recording]**
