@@ -65,8 +65,8 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
   }
 
   return (
-    <div className="border border-white/10 rounded-lg bg-black/20 backdrop-blur-sm overflow-hidden flex flex-col h-full">
-      {/* Toolbar */}
+    <div className="border border-white/10 rounded-lg bg-black/20 backdrop-blur-sm flex flex-col h-full min-h-0">
+      {/* Toolbar - Fixed */}
       <div className="flex items-center gap-1 p-2 border-b border-white/10 bg-white/5 flex-wrap shrink-0">
         <Button
           type="button"
@@ -175,7 +175,7 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
         </Button>
       </div>
 
-      {/* Editor - Scrollable */}
+      {/* Editor Content - Scrollable */}
       <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
         <EditorContent editor={editor} />
       </div>

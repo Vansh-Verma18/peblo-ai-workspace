@@ -41,7 +41,7 @@ export default function DashboardLayout({
       />
 
       <Dialog open={showNewNote} onOpenChange={setShowNewNote}>
-        <DialogContent className="max-w-4xl h-[80vh] p-0">
+        <DialogContent className="max-w-4xl max-h-[90vh] h-[90vh] p-0 flex flex-col overflow-hidden">
           <NoteEditor
             onSave={() => {
               setShowNewNote(false)

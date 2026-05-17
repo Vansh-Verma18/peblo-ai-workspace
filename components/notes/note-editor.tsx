@@ -131,8 +131,9 @@ export function NoteEditor({
   }
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between p-4 border-b border-gray-800 bg-gray-950/50">
+    <div className="flex flex-col h-full min-h-0">
+      {/* Fixed Toolbar */}
+      <div className="flex items-center justify-between p-4 border-b border-gray-800 bg-gray-950/50 shrink-0">
         <div className="flex items-center gap-4">
           <Button
             variant="ghost"
@@ -170,50 +171,55 @@ export function NoteEditor({
         )}
       </div>
 
-      <div className="flex-1 min-h-0 p-6 flex flex-col gap-4">
-        <Input
-          placeholder="Note title..."
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value)
-            setHasChanges(true)
-          }}
-          className="text-2xl font-bold border-none bg-transparent focus:ring-0 px-0 shrink-0"
-        />
+      {/* Scrollable Content Area */}
+      <div className="flex-1 min-h-0 overflow-hidden flex flex-col">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+          <div className="flex flex-col gap-4">
+            <Input
+              placeholder="Note title..."
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value)
+                setHasChanges(true)
+              }}
+              className="text-2xl font-bold border-none bg-transparent focus:ring-0 px-0"
+            />
 
-        <div className="flex flex-wrap gap-2 shrink-0">
-          {tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className="gap-1">
-              {tag}
-              <button
-                onClick={() => {
-                  removeTag(tag)
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <Badge key={tag} variant="secondary" className="gap-1">
+                  {tag}
+                  <button
+                    onClick={() => {
+                      removeTag(tag)
+                      setHasChanges(true)
+                    }}
+                    className="ml-1 hover:text-red-400"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </Badge>
+              ))}
+              <Input
+                placeholder="Add tag..."
+                value={tagInput}
+                onChange={(e) => setTagInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="w-32 h-6 text-xs"
+              />
+            </div>
+
+            <div className="min-h-[400px]">
+              <RichTextEditor
+                content={content}
+                onChange={(newContent) => {
+                  setContent(newContent)
                   setHasChanges(true)
                 }}
-                className="ml-1 hover:text-red-400"
-              >
-                <X className="w-3 h-3" />
-              </button>
-            </Badge>
-          ))}
-          <Input
-            placeholder="Add tag..."
-            value={tagInput}
-            onChange={(e) => setTagInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            className="w-32 h-6 text-xs"
-          />
-        </div>
-
-        <div className="flex-1 min-h-0">
-          <RichTextEditor
-            content={content}
-            onChange={(newContent) => {
-              setContent(newContent)
-              setHasChanges(true)
-            }}
-            placeholder="Start writing your note..."
-          />
+                placeholder="Start writing your note..."
+              />
+            </div>
+          </div>
         </div>
       </div>
 
