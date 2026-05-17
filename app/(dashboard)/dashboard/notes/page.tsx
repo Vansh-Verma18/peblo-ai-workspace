@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react"
 import { NoteCard } from "@/components/notes/note-card"
+import { NoteListSkeleton } from "@/components/notes/note-card-skeleton"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
@@ -118,8 +119,18 @@ export default function NotesPage() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-full">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500"></div>
+      <div className="p-8 space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-4xl font-bold text-white mb-2">Notes</h1>
+            <p className="text-gray-400">Loading notes...</p>
+          </div>
+          <Button disabled size="lg">
+            <Plus className="w-4 h-4 mr-2" />
+            New Note
+          </Button>
+        </div>
+        <NoteListSkeleton />
       </div>
     )
   }

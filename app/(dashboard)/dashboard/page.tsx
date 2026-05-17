@@ -1,5 +1,6 @@
 "use client"
 
+import { StatsSkeleton } from "@/components/dashboard/stats-skeleton"
 import { StatsCard } from "@/components/dashboard/stats-card"
 import { ActivityChart } from "@/components/dashboard/activity-chart"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -13,8 +14,12 @@ export default function DashboardPage() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-full">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500"></div>
+      <div className="p-8 space-y-8">
+        <div>
+          <h1 className="text-4xl font-bold text-white mb-2">Dashboard</h1>
+          <p className="text-gray-400">Welcome back! Here's your workspace overview.</p>
+        </div>
+        <StatsSkeleton />
       </div>
     )
   }
