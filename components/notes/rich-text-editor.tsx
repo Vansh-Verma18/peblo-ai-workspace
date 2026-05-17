@@ -46,7 +46,6 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
     editorProps: {
       attributes: {
         class: "prose prose-invert max-w-none focus:outline-none px-4 py-3",
-        style: "min-height: 300px; max-height: 100%; overflow-y: auto;",
       },
     },
     onUpdate: ({ editor }) => {
@@ -177,8 +176,8 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
       </div>
 
       {/* Editor - Scrollable */}
-      <div className="flex-1 overflow-hidden" style={{ minHeight: "300px" }}>
-        <EditorContent editor={editor} style={{ height: "100%", overflow: "auto" }} />
+      <div className="flex-1 overflow-y-auto overflow-x-hidden" style={{ minHeight: "300px" }}>
+        <EditorContent editor={editor} />
       </div>
     </div>
   )
