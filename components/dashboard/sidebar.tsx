@@ -2,19 +2,17 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { signOut } from "next-auth/react"
 import { Button } from "@/components/ui/button"
 import {
   LayoutDashboard,
   FileText,
   Archive,
-  Settings,
-  LogOut,
-  Sparkles,
   Plus,
+  Sparkles,
 } from "lucide-react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { UserProfile } from "./user-profile"
 
 interface SidebarProps {
   onNewNote?: () => void
@@ -70,36 +68,49 @@ export function Sidebar({ onNewNote }: SidebarProps) {
           </kbd>
         </Button>
 
-        <nav className="space-y-2">
+        <nav className="space-y-1">
           {links.map((link) => {
             const isActive = pathname === link.href
             return (
               <Link key={link.href} href={link.href}>
-                <Button
-                  variant={isActive ? "secondary" : "ghost"}
-                  className={cn(
-                    "w-full justify-start",
-                    isActive && "bg-indigo-600/20 text-indigo-400 hover:bg-indigo-600/30"
+                <div className="relative">
+                  {/* Active indicator */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 rounded-lg"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
                   )}
-                >
-                  <link.icon className="w-4 h-4 mr-3" />
-                  {link.label}
-                </Button>
+                  <Button
+                    variant="ghost"
+                    className={cn(
+                      "w-full justify-start relative",
+                      isActive
+                        ? "text-indigo-400 hover:text-indigo-300"
+                        : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                    )}
+                  >
+                    <link.icon className="w-4 h-4 mr-3" />
+                    {link.label}
+                    {isActive && (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className="ml-auto w-1.5 h-1.5 rounded-full bg-indigo-400"
+                      />
+                    )}
+                  </Button>
+                </div>
               </Link>
             )
           })}
         </nav>
       </div>
 
-      <div className="mt-auto p-6 space-y-2">
-        <Button
-          variant="ghost"
-          className="w-full justify-start"
-          onClick={() => signOut({ callbackUrl: "/login" })}
-        >
-          <LogOut className="w-4 h-4 mr-3" />
-          Sign Out
-        </Button>
+      {/* User Profile Section */}
+      <div className="mt-auto p-4 border-t border-gray-800/50">
+        <UserProfile />
       </div>
     </motion.aside>
   )
