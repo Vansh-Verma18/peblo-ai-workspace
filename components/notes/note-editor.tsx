@@ -162,7 +162,7 @@ export function NoteEditor({
         )}
       </div>
 
-      <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
+      <div className="flex-1 overflow-hidden p-6 flex flex-col gap-4">
         <Input
           placeholder="Note title..."
           value={title}
@@ -197,7 +197,7 @@ export function NoteEditor({
           />
         </div>
 
-        <div className="flex-1 min-h-0">
+        <div className="flex-1 overflow-hidden">
           <RichTextEditor
             content={content}
             onChange={(newContent) => {
