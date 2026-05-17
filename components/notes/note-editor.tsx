@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Textarea } from "@/components/ui/textarea"
+import { RichTextEditor } from "./rich-text-editor"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -196,14 +196,13 @@ export function NoteEditor({
           />
         </div>
 
-        <Textarea
-          placeholder="Start writing..."
-          value={content}
-          onChange={(e) => {
-            setContent(e.target.value)
+        <RichTextEditor
+          content={content}
+          onChange={(newContent) => {
+            setContent(newContent)
             setHasChanges(true)
           }}
-          className="min-h-[400px] text-base resize-none border-none bg-transparent focus:ring-0 px-0"
+          placeholder="Start writing your note..."
         />
       </div>
 
